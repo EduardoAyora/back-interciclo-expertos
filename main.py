@@ -41,6 +41,21 @@ def get_users_id():
     response = hechos
     return jsonify(response)
 
+@app.route('/api/hello', methods=['POST'])
+def hello():
+    json_data = request.json
+    codigo = json_data["codigo"]
+    template = env.find_template('disparador')
+
+    fact = template.new_fact()
+    fact["codigo"] = codigo
+    fact.assertit()
+    env.run()
+    response = ''
+    for h in env.facts():
+        response = str(h)
+    return jsonify(response)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
