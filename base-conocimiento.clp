@@ -17,7 +17,7 @@
     )
     (slot valor
         (type SYMBOL)
-        (allowed-symbols true false none)
+        (allowed-symbols TRUE FALSE none)
         (default none)
     )
 )
@@ -38,10 +38,10 @@
         )
     )
 =>
-    (if (eq ?valor true) then
+    (if (eq ?valor TRUE) then
         (assert (pregunta-tema (descripcion "computadoras")))
     )
-    (if (eq ?valor false) then
+    (if (eq ?valor FALSE) then
         (assert (pregunta-tema (descripcion "geometria")))
     )
 )
@@ -55,10 +55,10 @@
         )
     )
 =>
-    (if (eq ?valor true) then
+    (if (eq ?valor TRUE) then
         (assert (carrera-recomendada (descripcion "computacion")))
     )
-    (if (eq ?valor false) then
+    (if (eq ?valor FALSE) then
         (assert (carrera-recomendada (descripcion "civil")))
     )
 )
@@ -72,10 +72,10 @@
         )
     )
 =>
-    (if (eq ?valor true) then
+    (if (eq ?valor TRUE) then
         (assert (carrera-recomendada(descripcion "arquitectura")))
     )
-    (if (eq ?valor false) then
+    (if (eq ?valor FALSE) then
         (assert (carrera-recomendada (descripcion "contabilidad")))
     )
 )
