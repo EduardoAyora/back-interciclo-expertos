@@ -45,7 +45,7 @@ def get_users_id():
 
 
 @app.route('/api/preguntas', methods=['POST'])
-def hello():
+def preguntas():
     json_data = request.json
     tema = json_data["tema"]
     isTopicThatLikes = json_data["valor"]
@@ -63,6 +63,13 @@ def hello():
         clips_mssg)
 
     return jsonify(response)
+
+@app.route('/api/preguntas', methods=['GET'])
+def test():
+    env.run()
+    for h in env.facts():
+        print(str(h))
+    return jsonify('TEST')
 
 
 if __name__ == '__main__':
