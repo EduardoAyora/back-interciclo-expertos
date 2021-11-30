@@ -38,12 +38,10 @@
         )
     )
 =>
-    (if 
-        (test (eq ?valor true)) then
+    (if (eq ?valor true) then
         (assert (pregunta-tema (descripcion "computadoras")))
     )
-    (if 
-        (test (eq ?valor false)) then
+    (if (eq ?valor false) then
         (assert (pregunta-tema (descripcion "geometria")))
     )
 )
@@ -57,12 +55,10 @@
         )
     )
 =>
-    (if 
-        (test (eq ?valor true)) then
+    (if (eq ?valor true) then
         (assert (carrera-recomendada (descripcion "computacion")))
     )
-    (if 
-        (test (eq ?valor false)) then
+    (if (eq ?valor false) then
         (assert (carrera-recomendada (descripcion "civil")))
     )
 )
@@ -76,12 +72,10 @@
         )
     )
 =>
-    (if 
-        (test (eq ?valor true)) then
+    (if (eq ?valor true) then
         (assert (carrera-recomendada(descripcion "arquitectura")))
     )
-    (if 
-        (test (eq ?valor false)) then
+    (if (eq ?valor false) then
         (assert (carrera-recomendada (descripcion "contabilidad")))
     )
 )
