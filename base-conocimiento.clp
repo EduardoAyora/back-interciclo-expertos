@@ -16,7 +16,7 @@
         (allowed-strings "construir" "computadoras" "geometria")
     )
     (slot valor
-        (type symbol)
+        (type SYMBOL)
         (allowed-symbols true false none)
         (default none)
     )
@@ -40,11 +40,11 @@
 =>
     (if 
         (test (eq ?valor true)) then
-        (assert (pregunta-tema "computadoras"))
+        (assert (pregunta-tema (descripcion "computadoras")))
     )
     (if 
         (test (eq ?valor false)) then
-        (assert (pregunta-tema "geometria"))
+        (assert (pregunta-tema (descripcion "geometria")))
     )
 )
 
@@ -59,11 +59,11 @@
 =>
     (if 
         (test (eq ?valor true)) then
-        (assert (carrera-recomendada "computacion"))
+        (assert (carrera-recomendada (descripcion "computacion")))
     )
     (if 
         (test (eq ?valor false)) then
-        (assert (carrera-recomendada "civil"))
+        (assert (carrera-recomendada (descripcion "civil")))
     )
 )
 
@@ -78,10 +78,10 @@
 =>
     (if 
         (test (eq ?valor true)) then
-        (assert (carrera-recomendada "arquitectura"))
+        (assert (carrera-recomendada(descripcion "arquitectura")))
     )
     (if 
         (test (eq ?valor false)) then
-        (assert (carrera-recomendada "contabilidad"))
+        (assert (carrera-recomendada (descripcion "contabilidad")))
     )
 )

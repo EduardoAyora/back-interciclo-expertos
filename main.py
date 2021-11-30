@@ -44,14 +44,16 @@ def get_users_id():
     return jsonify(response)
 
 
-@app.route('/api/hello', methods=['POST'])
+@app.route('/api/preguntas', methods=['POST'])
 def hello():
     json_data = request.json
-    codigo = json_data["codigo"]
-    template = env.find_template('disparador')
+    tema = json_data["tema"]
+    isTopicThatLikes = json_data["valor"]
+    template = env.find_template('pregunta-tema')
 
     fact = template.new_fact()
-    fact["codigo"] = codigo
+    fact["descripcion"] = tema
+    fact["valor"] = isTopicThatLikes
     fact.assertit()
     env.run()
     clips_mssg = ''
