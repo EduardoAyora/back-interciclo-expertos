@@ -1,6 +1,8 @@
 from flask import Flask, request
 from flask import jsonify
 import clips
+from werkzeug.wrappers import response
+import clips_python_dictionary
 
 env = clips.Environment()
 env.load('base-conocimiento.clp')
@@ -41,6 +43,7 @@ def get_users_id():
     response = hechos
     return jsonify(response)
 
+
 @app.route('/api/hello', methods=['POST'])
 def hello():
     json_data = request.json
@@ -51,9 +54,12 @@ def hello():
     fact["codigo"] = codigo
     fact.assertit()
     env.run()
-    response = ''
+    clips_mssg = ''
     for h in env.facts():
-        response = str(h)
+        clips_mssg = str(h)
+    response = clips_python_dictionary.convert_clips_mssg_to_response(
+        clips_mssg)
+
     return jsonify(response)
 
 
