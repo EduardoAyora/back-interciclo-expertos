@@ -1,7 +1,6 @@
 from flask import Flask, request
 from flask import jsonify
 import clips
-from werkzeug.wrappers import response
 import clips_python_dictionary
 
 env = clips.Environment()
@@ -15,33 +14,6 @@ def create_app():
 
 
 app = create_app()
-
-
-@app.route('/api/archivos', methods=['GET'])
-def get_users():
-    response = {'message': 'success'}
-    return jsonify(response)
-
-
-@app.route('/api/archivos', methods=['POST'])
-def get_users_id():
-    json_data = request.json
-    codigo = json_data["codigo"]
-    texto = json_data["texto"]
-    template = env.find_template('archivo')
-
-    fact = template.new_fact()
-    fact["codigo"] = codigo
-    fact["texto"] = texto
-    fact.assertit()
-    env.run()
-    res = ''
-    hechos = []
-    for h in env.facts():
-        res += str(h)
-        hechos.append(str(h))
-    response = hechos
-    return jsonify(response)
 
 
 @app.route('/api/preguntas', methods=['POST'])
@@ -64,7 +36,8 @@ def preguntas():
 
     return jsonify(response)
 
-@app.route('/api/preguntas', methods=['GET'])
+
+@app.route('/api/hechos', methods=['GET'])
 def test():
     env.run()
     for h in env.facts():
