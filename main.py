@@ -21,11 +21,8 @@ CORS(app)
 @app.route('/api/grupo-preguntas', methods=['POST'])
 def grupo_preguntas():
     json_data = request.json
-    primera = json_data["primera"]
-    segunda = json_data["segunda"]
-    tercera = json_data["tercera"]
-    formResponses = [primera, segunda, tercera]
-    best_topic_ID = mode(formResponses) + 1
+    formResponses = json_data["responses"]
+    best_topic_ID = int(mode(formResponses)) + 1
 
     template = env.find_template('area')
     fact = template.new_fact()
