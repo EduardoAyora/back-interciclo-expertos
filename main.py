@@ -1,11 +1,11 @@
 from flask import Flask, request
 from flask import jsonify
+from flask_cors import CORS
 import clips
 import clips_python_dictionary
 
 env = clips.Environment()
 env.load('base-conocimiento.clp')
-Symbol = clips.Symbol
 
 
 def create_app():
@@ -14,6 +14,7 @@ def create_app():
 
 
 app = create_app()
+CORS(app)
 
 
 @app.route('/api/preguntas', methods=['POST'])
@@ -21,8 +22,11 @@ def preguntas():
     json_data = request.json
     tema = json_data["tema"]
     isTopicThatLikes = json_data["valor"]
-    template = env.find_template('pregunta-tema')
 
+    if tema == '':
+        return jsonify({"message": "start"})
+
+    template = env.find_template('pregunta-tema')
     fact = template.new_fact()
     fact["descripcion"] = tema
     fact["valor"] = isTopicThatLikes

@@ -1,7 +1,7 @@
 clips_python_messages = {
-    "construir": "Le gusta la construcción",
-    "computadoras": "Le gustan las computadoras",
-    "geometria": "Le gusta la geometría",
+    "construir": "¿Le gusta la construcción?",
+    "computadoras": "¿Le gustan las computadoras?",
+    "geometria": "¿Le gusta la geometría?",
     "computacion": "Su carrera ideal es la ingeniería en computación",
     "civil": "Su carrera ideal es la ingeniería civil",
     "arquitectura": "Su carrera ideal es la arquitectura",
@@ -10,8 +10,11 @@ clips_python_messages = {
 
 
 def convert_clips_mssg_to_response(clips_mssg):
-    response = 'No ha realizado una pregunta'
+    response = {
+        "message": 'No se ha realizado una pregunta'
+    }
     for key in clips_python_messages:
         if key in clips_mssg:
-            response = clips_python_messages[key]
+            response['message'] = clips_python_messages[key]
+            response['topic'] = key
     return response
