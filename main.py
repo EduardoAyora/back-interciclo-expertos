@@ -3,6 +3,7 @@ from flask import jsonify
 from flask_cors import CORS
 import clips
 import clips_python_dictionary
+from statistics import mode
 
 env = clips.Environment()
 env.load('base-conocimiento.clp')
@@ -15,6 +16,30 @@ def create_app():
 
 app = create_app()
 CORS(app)
+
+
+@app.route('/api/grupo-preguntas', methods=['POST'])
+def grupo_preguntas():
+    json_data = request.json
+    primera = json_data["primera"]
+    segunda = json_data["segunda"]
+    tercera = json_data["tercera"]
+    formResponses = [primera, segunda, tercera]
+    best_topic_ID = mode(formResponses) + 1
+
+    template = env.find_template('area')
+    fact = template.new_fact()
+    fact["codigo"] = best_topic_ID
+    fact["valor"] = True
+    fact.assertit()
+    env.run()
+    clips_mssg = ''
+    for h in env.facts():
+        clips_mssg = str(h)
+    response = clips_python_dictionary.convert_clips_mssg_to_response(
+        clips_mssg)
+
+    return jsonify(response)
 
 
 @app.route('/api/preguntas', methods=['POST'])

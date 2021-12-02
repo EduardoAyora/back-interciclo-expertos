@@ -1,12 +1,11 @@
-(deftemplate archivo
+(deftemplate area
     (slot codigo
         (type INTEGER)
-        (default 1)
-        (range 0 10000)
     )
-    (slot texto
-        (type STRING)
-        (default ?DERIVE)
+    (slot valor
+        (type SYMBOL)
+        (allowed-symbols TRUE FALSE none)
+        (default none)
     )
 )
 
@@ -27,6 +26,18 @@
         (type STRING)
         (allowed-strings "computacion" "civil" "arquitectura" "contabilidad")
     )
+)
+
+(defrule gusta-matematica
+    (area (codigo ?codigo) (valor ?valor))
+    (test
+        (and
+            (eq ?codigo 1)
+            (eq ?valor TRUE)
+        )
+    )
+=>
+    (assert (pregunta-tema (descripcion "construir")))
 )
 
 (defrule validar-gusta-construir
