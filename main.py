@@ -41,6 +41,12 @@ def preguntas():
     return jsonify(response)
 
 
+@app.route('/api/reiniciar', methods=['GET'])
+def reiniciar():
+    env.reset()
+    return jsonify(True)
+
+
 @app.route('/api/hechos', methods=['GET'])
 def test():
     env.run()
