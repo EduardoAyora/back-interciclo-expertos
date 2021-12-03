@@ -12,7 +12,7 @@
 (deftemplate pregunta-tema
     (slot descripcion
         (type STRING)
-        (allowed-strings "construir" "computadoras" "geometria" "sociales" "culturas" "redaccion" "creativa" "historia" "investigar" "emprendedor" "negocio" "politica")
+        (allowed-strings "construir" "computadoras" "geometria" "sociales" "culturas" "redaccion" "creativa" "historia" "investigar" "emprendedor" "negocio" "politica" "cientifica" "energia" "enfermedad")
     )
     (slot valor
         (type SYMBOL)
@@ -24,7 +24,7 @@
 (deftemplate carrera-recomendada
     (slot descripcion
         (type STRING)
-        (allowed-strings "computacion" "civil" "arquitectura" "contabilidad" "antropologia" "filosofia" "comunicacion" "psicologia" "artes" "diseno" "arqueologia" "filologia" "empresas" "contabilidad" "economista" "ingcomercial")
+        (allowed-strings "computacion" "civil" "arquitectura" "contabilidad" "antropologia" "filosofia" "comunicacion" "psicologia" "artes" "diseno" "arqueologia" "filologia" "empresas" "contabilidad" "economista" "ingcomercial" "cquimica" "biologia" "medicina" "bioquimica")
     )
 )
 
@@ -75,7 +75,7 @@
         )
     )
 =>
-    (assert (pregunta-tema (descripcion "construir")))
+    (assert (pregunta-tema (descripcion "cientifica")))
 )
 
 (defrule gusta-matematica
@@ -250,6 +250,57 @@
 )
 
 ; biologia - química
+
+(defrule validar-gusta-cientifica
+    (pregunta-tema (descripcion ?descripcion) (valor ?valor))
+    (test
+        (and
+            (eq ?descripcion "cientifica")
+            (neq ?valor none)
+        )
+    )
+=>
+    (if (eq ?valor TRUE) then
+        (assert (pregunta-tema (descripcion "energia")))
+    )
+    (if (eq ?valor FALSE) then
+        (assert (pregunta-tema (descripcion "enfermedad")))
+    )
+)
+
+(defrule validar-gusta-energia
+    (pregunta-tema (descripcion ?descripcion) (valor ?valor))
+    (test
+        (and
+            (eq ?descripcion "energia")
+            (neq ?valor none)
+        )
+    )
+=>
+    (if (eq ?valor TRUE) then
+        (assert (carrera-recomendada (descripcion "cquimica")))
+    )
+    (if (eq ?valor FALSE) then
+        (assert (carrera-recomendada (descripcion "biologia")))
+    )
+)
+
+(defrule validar-gusta-enfermedad
+    (pregunta-tema (descripcion ?descripcion) (valor ?valor))
+    (test
+        (and
+            (eq ?descripcion "enfermedad")
+            (neq ?valor none)
+        )
+    )
+=>
+    (if (eq ?valor TRUE) then
+        (assert (carrera-recomendada (descripcion "medicina")))
+    )
+    (if (eq ?valor FALSE) then
+        (assert (carrera-recomendada (descripcion "bioquimica")))
+    )
+)
 
 ; matematica
 
