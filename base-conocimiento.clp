@@ -88,6 +88,67 @@
     (assert (pregunta-tema (descripcion "construir")))
 )
 
+; humanidades
+
+(defrule validar-gusta-sociales
+    (pregunta-tema (descripcion ?descripcion) (valor ?valor))
+    (test
+        (and
+            (eq ?descripcion "sociales")
+            (neq ?valor none)
+        )
+    )
+=>
+    (if (eq ?valor TRUE) then
+        (assert (pregunta-tema (descripcion "culturas")))
+    )
+    (if (eq ?valor FALSE) then
+        (assert (pregunta-tema (descripcion "redaccion")))
+    )
+)
+
+; arte
+
+(defrule validar-gusta-arte
+    (pregunta-tema (descripcion ?descripcion) (valor ?valor))
+    (test
+        (and
+            (eq ?descripcion "creativa")
+            (neq ?valor none)
+        )
+    )
+=>
+    (if (eq ?valor TRUE) then
+        (assert (pregunta-tema (descripcion "historia")))
+    )
+    (if (eq ?valor FALSE) then
+        (assert (pregunta-tema (descripcion "investigar")))
+    )
+)
+
+; administracion
+
+(defrule validar-gusta-administracion
+    (pregunta-tema (descripcion ?descripcion) (valor ?valor))
+    (test
+        (and
+            (eq ?descripcion "emprendedor")
+            (neq ?valor none)
+        )
+    )
+=>
+    (if (eq ?valor TRUE) then
+        (assert (pregunta-tema (descripcion "negocio")))
+    )
+    (if (eq ?valor FALSE) then
+        (assert (pregunta-tema (descripcion "politica")))
+    )
+)
+
+; biologia - química
+
+; matematica
+
 (defrule validar-gusta-construir
     (pregunta-tema (descripcion ?descripcion) (valor ?valor))
     (test
