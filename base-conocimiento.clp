@@ -225,7 +225,7 @@
     )
 =>
     (if (eq ?valor TRUE) then
-        (assert (carrera-recomendada (descripcion "administracion")))
+        (assert (carrera-recomendada (descripcion "empresas")))
     )
     (if (eq ?valor FALSE) then
         (assert (carrera-recomendada (descripcion "contabilidad")))
