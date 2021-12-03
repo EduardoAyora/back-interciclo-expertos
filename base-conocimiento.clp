@@ -12,7 +12,7 @@
 (deftemplate pregunta-tema
     (slot descripcion
         (type STRING)
-        (allowed-strings "construir" "computadoras" "geometria" "sociales" "culturas" "redaccion" "creativa" "historia" "investigar" "emprendedor" "negocio" "politica" "cientifica" "energia" "enfermedad")
+        (allowed-strings "construir" "computadoras" "mdiseno" "sociales" "culturas" "redaccion" "creativa" "historia" "investigar" "emprendedor" "negocio" "politica" "cientifica" "energia" "enfermedad")
     )
     (slot valor
         (type SYMBOL)
@@ -314,10 +314,10 @@
     )
 =>
     (if (eq ?valor TRUE) then
-        (assert (pregunta-tema (descripcion "computadoras")))
+        (assert (pregunta-tema (descripcion "mdiseno")))
     )
     (if (eq ?valor FALSE) then
-        (assert (pregunta-tema (descripcion "geometria")))
+        (assert (pregunta-tema (descripcion "computadoras")))
     )
 )
 
@@ -334,15 +334,15 @@
         (assert (carrera-recomendada (descripcion "computacion")))
     )
     (if (eq ?valor FALSE) then
-        (assert (carrera-recomendada (descripcion "civil")))
+        (assert (carrera-recomendada (descripcion "contabilidad")))
     )
 )
 
-(defrule validar-gusta-geometria
+(defrule validar-gusta-mdiseno
     (pregunta-tema (descripcion ?descripcion) (valor ?valor))
     (test
         (and
-            (eq ?descripcion "geometria")
+            (eq ?descripcion "mdiseno")
             (neq ?valor none)
         )
     )
@@ -351,6 +351,6 @@
         (assert (carrera-recomendada(descripcion "arquitectura")))
     )
     (if (eq ?valor FALSE) then
-        (assert (carrera-recomendada (descripcion "contabilidad")))
+        (assert (carrera-recomendada (descripcion "civil")))
     )
 )
