@@ -119,10 +119,27 @@
     )
 =>
     (if (eq ?valor TRUE) then
-        (assert (carrera-recomendada (descripcion "computacion")))
+        (assert (carrera-recomendada (descripcion "antropologia")))
     )
     (if (eq ?valor FALSE) then
-        (assert (carrera-recomendada (descripcion "civil")))
+        (assert (carrera-recomendada (descripcion "filosofia")))
+    )
+)
+
+(defrule validar-gusta-redaccion
+    (pregunta-tema (descripcion ?descripcion) (valor ?valor))
+    (test
+        (and
+            (eq ?descripcion "redaccion")
+            (neq ?valor none)
+        )
+    )
+=>
+    (if (eq ?valor TRUE) then
+        (assert (carrera-recomendada (descripcion "comunicacion")))
+    )
+    (if (eq ?valor FALSE) then
+        (assert (carrera-recomendada (descripcion "psicologia")))
     )
 )
 
@@ -145,6 +162,40 @@
     )
 )
 
+(defrule validar-gusta-historia
+    (pregunta-tema (descripcion ?descripcion) (valor ?valor))
+    (test
+        (and
+            (eq ?descripcion "historia")
+            (neq ?valor none)
+        )
+    )
+=>
+    (if (eq ?valor TRUE) then
+        (assert (carrera-recomendada (descripcion "artes")))
+    )
+    (if (eq ?valor FALSE) then
+        (assert (carrera-recomendada (descripcion "diseno")))
+    )
+)
+
+(defrule validar-gusta-investigar
+    (pregunta-tema (descripcion ?descripcion) (valor ?valor))
+    (test
+        (and
+            (eq ?descripcion "investigar")
+            (neq ?valor none)
+        )
+    )
+=>
+    (if (eq ?valor TRUE) then
+        (assert (carrera-recomendada (descripcion "arqueologia")))
+    )
+    (if (eq ?valor FALSE) then
+        (assert (carrera-recomendada (descripcion "filologia")))
+    )
+)
+
 ; administracion
 
 (defrule validar-gusta-administracion
@@ -161,6 +212,40 @@
     )
     (if (eq ?valor FALSE) then
         (assert (pregunta-tema (descripcion "politica")))
+    )
+)
+
+(defrule validar-gusta-negocio
+    (pregunta-tema (descripcion ?descripcion) (valor ?valor))
+    (test
+        (and
+            (eq ?descripcion "negocio")
+            (neq ?valor none)
+        )
+    )
+=>
+    (if (eq ?valor TRUE) then
+        (assert (carrera-recomendada (descripcion "administracion")))
+    )
+    (if (eq ?valor FALSE) then
+        (assert (carrera-recomendada (descripcion "contabilidad")))
+    )
+)
+
+(defrule validar-gusta-politica
+    (pregunta-tema (descripcion ?descripcion) (valor ?valor))
+    (test
+        (and
+            (eq ?descripcion "politica")
+            (neq ?valor none)
+        )
+    )
+=>
+    (if (eq ?valor TRUE) then
+        (assert (carrera-recomendada (descripcion "economista")))
+    )
+    (if (eq ?valor FALSE) then
+        (assert (carrera-recomendada (descripcion "ingcomercial")))
     )
 )
 
