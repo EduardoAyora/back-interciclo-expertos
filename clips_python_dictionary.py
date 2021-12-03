@@ -11,6 +11,9 @@ clips_python_questions = {
     "emprendedor": "¿Le gusta la emprendedor?",
     "negocio": "¿Le gusta la negocio?",
     "politica": "¿Le gusta la politica?",
+    "cientifica": "¿Le gusta la cientifica?",
+    "energia": "¿Le gusta la energia?",
+    "enfermedad": "¿Le gusta la enfermedad?",
 }
 
 clips_python_results = {
@@ -18,6 +21,23 @@ clips_python_results = {
     "civil": "Su carrera ideal es la ingeniería civil",
     "arquitectura": "Su carrera ideal es la arquitectura",
     "contabilidad": "Su carrera ideal es la contabilidad",
+    "antropologia": "Su carrera ideal es la antropologia",
+    "filosofia": "Su carrera ideal es la filosofia",
+    "comunicacion": "Su carrera ideal es la comunicacion",
+    "psicologia": "Su carrera ideal es la psicologia",
+    "artes": "Su carrera ideal es la artes",
+    "diseno": "Su carrera ideal es la diseno",
+    "arqueologia": "Su carrera ideal es la arqueologia",
+    "filologia": "Su carrera ideal es la filologia",
+    "empresas": "Su carrera ideal es la empresas",
+    "contabilidad": "Su carrera ideal es la contabilidad",
+    "economista": "Su carrera ideal es la economista",
+    "ingcomercial": "Su carrera ideal es la ingcomercial",
+    "cquimica": "Su carrera ideal es la cquimica",
+    "biologia": "Su carrera ideal es la biologia",
+    "medicina": "Su carrera ideal es la medicina",
+    "bioquimica": "Su carrera ideal es la bioquimica",
+
 }
 
 
