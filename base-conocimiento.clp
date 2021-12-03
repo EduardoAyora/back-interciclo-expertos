@@ -75,7 +75,7 @@
         )
     )
 =>
-    (assert (pregunta-tema (descripcion "")))
+    (assert (pregunta-tema (descripcion "construir")))
 )
 
 (defrule gusta-matematica
