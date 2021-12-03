@@ -12,7 +12,7 @@
 (deftemplate pregunta-tema
     (slot descripcion
         (type STRING)
-        (allowed-strings "construir" "computadoras" "geometria")
+        (allowed-strings "construir" "computadoras" "geometria" "sociales" "culturas" "redaccion" "creativa" "historia" "investigar" "emprendedor" "negocio" "politica")
     )
     (slot valor
         (type SYMBOL)
@@ -28,11 +28,59 @@
     )
 )
 
-(defrule gusta-matematica
+(defrule gusta-humanidades
     (area (codigo ?codigo) (valor ?valor))
     (test
         (and
             (eq ?codigo 1)
+            (eq ?valor TRUE)
+        )
+    )
+=>
+    (assert (pregunta-tema (descripcion "sociales")))
+)
+
+(defrule gusta-arte
+    (area (codigo ?codigo) (valor ?valor))
+    (test
+        (and
+            (eq ?codigo 2)
+            (eq ?valor TRUE)
+        )
+    )
+=>
+    (assert (pregunta-tema (descripcion "creativa")))
+)
+
+(defrule gusta-administracion
+    (area (codigo ?codigo) (valor ?valor))
+    (test
+        (and
+            (eq ?codigo 3)
+            (eq ?valor TRUE)
+        )
+    )
+=>
+    (assert (pregunta-tema (descripcion "emprendedor")))
+)
+
+(defrule gusta-biologia-quimica
+    (area (codigo ?codigo) (valor ?valor))
+    (test
+        (and
+            (eq ?codigo 4)
+            (eq ?valor TRUE)
+        )
+    )
+=>
+    (assert (pregunta-tema (descripcion "")))
+)
+
+(defrule gusta-matematica
+    (area (codigo ?codigo) (valor ?valor))
+    (test
+        (and
+            (eq ?codigo 5)
             (eq ?valor TRUE)
         )
     )
