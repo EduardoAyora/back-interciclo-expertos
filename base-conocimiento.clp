@@ -24,9 +24,11 @@
 (deftemplate carrera-recomendada
     (slot descripcion
         (type STRING)
-        (allowed-strings "computacion" "civil" "arquitectura" "contabilidad")
+        (allowed-strings "computacion" "civil" "arquitectura" "contabilidad" "antropologia" "filosofia" "comunicacion" "psicologia" "artes" "diseno" "arqueologia" "filologia" "empresas" "contabilidad" "economista" "ingcomercial")
     )
 )
+
+; areas generales
 
 (defrule gusta-humanidades
     (area (codigo ?codigo) (valor ?valor))
@@ -104,6 +106,23 @@
     )
     (if (eq ?valor FALSE) then
         (assert (pregunta-tema (descripcion "redaccion")))
+    )
+)
+
+(defrule validar-gusta-culturas
+    (pregunta-tema (descripcion ?descripcion) (valor ?valor))
+    (test
+        (and
+            (eq ?descripcion "culturas")
+            (neq ?valor none)
+        )
+    )
+=>
+    (if (eq ?valor TRUE) then
+        (assert (carrera-recomendada (descripcion "computacion")))
+    )
+    (if (eq ?valor FALSE) then
+        (assert (carrera-recomendada (descripcion "civil")))
     )
 )
 
