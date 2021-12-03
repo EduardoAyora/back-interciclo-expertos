@@ -72,9 +72,11 @@ def reiniciar():
 @app.route('/api/hechos', methods=['GET'])
 def test():
     env.run()
+    facts = []
     for h in env.facts():
+        facts.append(str(h))
         print(str(h))
-    return jsonify('TEST')
+    return jsonify(facts)
 
 
 if __name__ == '__main__':
