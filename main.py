@@ -7,6 +7,7 @@ from statistics import mode
 
 env = clips.Environment()
 env.load('base-conocimiento.clp')
+env.load_facts('base-hechos.clp')
 
 
 def create_app():
@@ -45,15 +46,20 @@ def preguntas():
     tema = json_data["tema"]
     isTopicThatLikes = json_data["valor"]
 
-    if tema == '':
+    lastFact = ''
+    for h in env.facts():
+        lastFact = str(h)
+    if tema == '' and lastFact == '(initial-fact)':
         return jsonify({"message": "start"})
 
-    template = env.find_template('pregunta-tema')
-    fact = template.new_fact()
-    fact["descripcion"] = tema
-    fact["valor"] = isTopicThatLikes
-    fact.assertit()
-    env.run()
+    if tema != '':
+        template = env.find_template('pregunta-tema')
+        fact = template.new_fact()
+        fact["descripcion"] = tema
+        fact["valor"] = isTopicThatLikes
+        fact.assertit()
+        env.run()
+
     clips_mssg = ''
     for h in env.facts():
         clips_mssg = str(h)
