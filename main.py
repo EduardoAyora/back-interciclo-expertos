@@ -71,6 +71,7 @@ def preguntas():
 
 @app.route('/api/reiniciar', methods=['GET'])
 def reiniciar():
+    env.save_facts('hechos-guardados.clp')
     env.reset()
     return jsonify(True)
 
